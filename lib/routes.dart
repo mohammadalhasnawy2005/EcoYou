@@ -13,18 +13,17 @@ import 'package:ecoyou/view/screen/onboarding.dart';
 import 'package:get/get_navigation/get_navigation.dart';
 
 List<GetPage<dynamic>> routes = [
-  GetPage(name: "/", page: () => const TestView()),
-
+  // GetPage(name: "/", page: () => const TestView()),
   GetPage(name: AppRoute.login, page: () => const Login()),
   GetPage(name: AppRoute.signup, page: () => const SignUp()),
   GetPage(name: AppRoute.forgetPassword, page: () => const ForgetPassword()),
   GetPage(name: AppRoute.resetPassword, page: () => const ResetPassword()),
   GetPage(name: AppRoute.verifyCode, page: () => const VerifyCode()),
-  // GetPage(
-  //   name: "/",
-  //   page: () => const OnBoarding(),
-  //   middlewares: [MyMiddleware()],
-  // ),
+  GetPage(
+    name: "/",
+    page: () => const OnBoarding(),
+    middlewares: [MyMiddleware()],
+  ),
   GetPage(
     name: AppRoute.successResetPassword,
     page: () => const SuccessResetPassword(),

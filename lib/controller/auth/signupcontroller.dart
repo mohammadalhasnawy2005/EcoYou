@@ -1,4 +1,7 @@
+import 'package:ecoyou/core/class/statusrequest.dart';
 import 'package:ecoyou/core/constant/routes.dart';
+import 'package:ecoyou/core/function/handingdatacontroller.dart';
+import 'package:ecoyou/data/datasource/remote/auth/signup.dart';
 import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 
@@ -14,16 +17,38 @@ class SignUpControllerImp extends SignUpController {
   late TextEditingController phone;
   late TextEditingController username;
 
+  late StatusRequest statusRequest;
+
+  SignupData signupData = SignupData(Get.find());
+
+  List data = [];
+
   @override
-  signUp() {
-    var formdata = formstate.currentState;
-    if (formdata!.validate()) {
-      print("valid");
-      Get.offNamed(AppRoute.verifyCodeSignUp);
-      Get.delete<SignUpControllerImp>();
-    } else {
-      print("invalid");
-    }
+  signUp() async {
+    if (formstate.currentState!.validate()) {
+      statusRequest = StatusRequest.loading;
+      var response = await signupData.postdata(
+        username.text,
+        password.text,
+        email.text,
+        phone.text,
+      );
+      print("=============================== Controller $response ");
+      statusRequest = handlingData(response);
+      if (StatusRequest.success == statusRequest) {
+        if (response['status'] == "success") {
+          // data.addAll(response['data']);
+          Get.offNamed(AppRoute.verifyCodeSignUp);
+        } else {
+          Get.defaultDialog(
+            title: "ُWarning",
+            middleText: "Phone Number Or Email Already Exists",
+          );
+          statusRequest = StatusRequest.failure;
+        }
+      }
+      update();
+    } else {}
   }
 
   @override
