@@ -1,9 +1,1 @@
-enum StatusRequest {
-  loading,
-  success,
-  failure,
-  noInternet,
-  serverfailure,
-  unauthorized,
-  forbidden,
-}
+enum StatusRequest { loading, success, failure, serverfailure, offlinefailure }

@@ -1,3 +1,4 @@
+import 'package:ecoyou/bindings/intialbindings.dart';
 import 'package:ecoyou/core/localization/changelocal.dart';
 import 'package:ecoyou/core/services/services.dart';
 import 'package:ecoyou/routes.dart';
@@ -20,6 +21,7 @@ class MyApp extends StatelessWidget {
       title: 'Flutter Demo',
       theme: controller.appTheme,
       // routes: routes,  هذاالقديم مال دفلت مال فلتر حدثته للكيت اكس
+      initialBinding: InitialBindings(),
       getPages: routes,
     );
   }
