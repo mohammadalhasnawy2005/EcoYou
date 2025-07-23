@@ -1,4 +1,5 @@
 import 'package:ecoyou/controller/auth/signupcontroller.dart';
+import 'package:ecoyou/core/class/statusrequest.dart';
 import 'package:ecoyou/core/constant/color.dart';
 import 'package:ecoyou/core/function/alertexitapp.dart';
 import 'package:ecoyou/core/function/validinput.dart';
@@ -15,7 +16,7 @@ class SignUp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    SignUpControllerImp controller = Get.put(SignUpControllerImp());
+    Get.put(SignUpControllerImp());
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
@@ -30,80 +31,91 @@ class SignUp extends StatelessWidget {
       ),
       body: WillPopScope(
         onWillPop: alertExitApp,
-        child: Container(
-          padding: const EdgeInsets.all(20.0),
-          child: Form(
-            key: controller.formstate,
-            child: ListView(
-              children: [
-                const SizedBox(height: 20.0),
-                CustomTextTitleAuth(title: "Welcome Back"),
-                const SizedBox(height: 10.0),
-                CustomTextBodyAuth(text: "Sign up to continue to EcoYou"),
-                const SizedBox(height: 70),
-                CustomTextFormAuth(
-                  valid: (val) {
-                    return validInput(val!, 5, 100, "email");
-                  },
-                  hintText: "Enter your email",
-                  icon: Icons.email_outlined,
-                  labelText: "Email",
-                  mycontroller: controller.email,
-                  isNumber: false,
-                ),
-                const SizedBox(height: 20.0),
-                CustomTextFormAuth(
-                  isNumber: false,
-                  valid: (val) {
-                    return validInput(val!, 8, 30, "password");
-                  },
-                  hintText: "Enter your password",
-                  icon: Icons.lock_outline,
-                  labelText: "Password",
-                  mycontroller: controller.password,
-                ),
-                const SizedBox(height: 20.0),
-                CustomTextFormAuth(
-                  isNumber: true,
-                  valid: (val) {
-                    return validInput(val!, 10, 15, "phone");
-                  },
-                  hintText: "Enter your phone number",
-                  icon: Icons.phone_outlined,
-                  labelText: "Phone Number",
-                  mycontroller: controller.phone,
-                ),
-                const SizedBox(height: 20.0),
-                CustomTextFormAuth(
-                  isNumber: false,
-                  valid: (val) {
-                    return validInput(val!, 3, 20, "username");
-                  },
-                  hintText: "Enter your username",
-                  icon: Icons.person_outline,
-                  labelText: "Username",
-                  mycontroller: controller.username,
-                ),
-                const SizedBox(height: 20.0),
-                Text("Forgot Password?", textAlign: TextAlign.end),
-                const SizedBox(height: 20.0),
-                CustomButtonAuth(
-                  text: "Sign Up",
-                  onPressed: () {
-                    controller.signUp();
-                  },
-                ),
-                const SizedBox(height: 20.0),
-                CustomTextSignUpOrSignIn(
-                  textone: "you already have an account?",
-                  texttwo: " Sign In",
-                  onTap: () {
-                    controller.goToSignIn();
-                  },
-                ),
-              ],
-            ),
-          ),
+        child: GetBuilder<SignUpControllerImp>(
+          builder:
+              (controller) =>
+                  controller.statusRequest == StatusRequest.loading
+                      ? const Center(child: Text("loading..........."))
+                      : Container(
+                        padding: const EdgeInsets.all(20.0),
+                        child: Form(
+                          key: controller.formstate,
+                          child: ListView(
+                            children: [
+                              const SizedBox(height: 20.0),
+                              CustomTextTitleAuth(title: "Welcome Back"),
+                              const SizedBox(height: 10.0),
+                              CustomTextBodyAuth(
+                                text: "Sign up to continue to EcoYou",
+                              ),
+                              const SizedBox(height: 70),
+                              CustomTextFormAuth(
+                                valid: (val) {
+                                  return validInput(val!, 5, 100, "email");
+                                },
+                                hintText: "Enter your email",
+                                icon: Icons.email_outlined,
+                                labelText: "Email",
+                                mycontroller: controller.email,
+                                isNumber: false,
+                              ),
+                              const SizedBox(height: 20.0),
+                              CustomTextFormAuth(
+                                isNumber: false,
+                                valid: (val) {
+                                  return validInput(val!, 8, 30, "password");
+                                },
+                                hintText: "Enter your password",
+                                icon: Icons.lock_outline,
+                                labelText: "Password",
+                                mycontroller: controller.password,
+                              ),
+                              const SizedBox(height: 20.0),
+                              CustomTextFormAuth(
+                                isNumber: true,
+                                valid: (val) {
+                                  return validInput(val!, 10, 15, "phone");
+                                },
+                                hintText: "Enter your phone number",
+                                icon: Icons.phone_outlined,
+                                labelText: "Phone Number",
+                                mycontroller: controller.phone,
+                              ),
+                              const SizedBox(height: 20.0),
+                              CustomTextFormAuth(
+                                isNumber: false,
+                                valid: (val) {
+                                  return validInput(val!, 3, 20, "username");
+                                },
+                                hintText: "Enter your username",
+                                icon: Icons.person_outline,
+                                labelText: "Username",
+                                mycontroller: controller.username,
+                              ),
+                              const SizedBox(height: 20.0),
+                              Text(
+                                "Forgot Password?",
+                                textAlign: TextAlign.end,
+                              ),
+                              const SizedBox(height: 20.0),
+                              CustomButtonAuth(
+                                text: "Sign Up",
+                                onPressed: () {
+                                  controller.signUp();
+                                },
+                              ),
+                              const SizedBox(height: 20.0),
+                              CustomTextSignUpOrSignIn(
+                                textone: "you already have an account?",
+                                texttwo: " Sign In",
+                                onTap: () {
+                                  controller.goToSignIn();
+                                },
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
         ),
       ),
     );

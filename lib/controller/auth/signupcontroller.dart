@@ -17,7 +17,7 @@ class SignUpControllerImp extends SignUpController {
   late TextEditingController phone;
   late TextEditingController username;
 
-  late StatusRequest statusRequest;
+  StatusRequest? statusRequest;
 
   SignupData signupData = SignupData(Get.find());
 
@@ -27,6 +27,7 @@ class SignUpControllerImp extends SignUpController {
   signUp() async {
     if (formstate.currentState!.validate()) {
       statusRequest = StatusRequest.loading;
+      update();
       var response = await signupData.postdata(
         username.text,
         password.text,
@@ -38,7 +39,10 @@ class SignUpControllerImp extends SignUpController {
       if (StatusRequest.success == statusRequest) {
         if (response['status'] == "success") {
           // data.addAll(response['data']);
-          Get.offNamed(AppRoute.verifyCodeSignUp);
+          Get.offNamed(
+            AppRoute.verifyCodeSignUp,
+            arguments: {"email": email.text},
+          );
         } else {
           Get.defaultDialog(
             title: "ُWarning",
