@@ -5,36 +5,36 @@ import 'package:ecoyou/data/datasource/remote/auth/verifycodesignup.dart';
 import 'package:get/get.dart';
 
 abstract class VerifyCodeSignUpController extends GetxController {
-  chekcode();
-  goToSuccessSignUp();
+  checkCode();
+  goToSuccessSignUp(String verfiyCodeSignUp);
 }
 
 class VerifyCodeSignUpControllerImp extends VerifyCodeSignUpController {
-  VerifyCodeSignUpData verifyCodeSignUpData = VerifyCodeSignUpData(Get.find());
-
-  late String verifyCode;
+  VerfiyCodeSignUpData verfiyCodeSignUpData = VerfiyCodeSignUpData(Get.find());
 
   String? email;
+
   StatusRequest? statusRequest;
 
   @override
-  chekcode() {}
+  checkCode() {}
 
   @override
-  goToSuccessSignUp() async {
+  goToSuccessSignUp(verfiyCodeSignUp) async {
     statusRequest = StatusRequest.loading;
     update();
-    var response = await verifyCodeSignUpData.postdata(email!, verifyCode);
-    print("=============================== Controller $response ");
+    var response = await verfiyCodeSignUpData.postdata(
+      email!,
+      verfiyCodeSignUp,
+    );
     statusRequest = handlingData(response);
     if (StatusRequest.success == statusRequest) {
       if (response['status'] == "success") {
-        // data.addAll(response['data']);
         Get.offNamed(AppRoute.successSignUp);
       } else {
         Get.defaultDialog(
           title: "ُWarning",
-          middleText: "Phone Number Or Email Already Exists",
+          middleText: "Verify Code Not Correct",
         );
         statusRequest = StatusRequest.failure;
       }

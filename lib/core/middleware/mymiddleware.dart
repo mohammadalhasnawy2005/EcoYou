@@ -3,7 +3,7 @@ import 'package:ecoyou/core/services/services.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-class MyMiddleware extends GetMiddleware {
+class MyMiddleWare extends GetMiddleware {
   @override
   int? get priority => 1;
 
@@ -11,8 +11,8 @@ class MyMiddleware extends GetMiddleware {
 
   @override
   RouteSettings? redirect(String? route) {
-    if (myServices.sharedPreferences.getString("onBoarding") == "1") {
-      return RouteSettings(name: AppRoute.login);
+    if (myServices.sharedPreferences.getString("onboarding") == "1") {
+      return const RouteSettings(name: AppRoute.login);
     }
     return null;
   }

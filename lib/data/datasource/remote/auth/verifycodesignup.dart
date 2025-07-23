@@ -1,13 +1,11 @@
 import 'package:ecoyou/core/class/crud.dart';
 import 'package:ecoyou/linkapi.dart';
 
-class VerifyCodeSignUpData {
+class VerfiyCodeSignUpData {
   Crud crud;
-
-  VerifyCodeSignUpData(this.crud);
-
+  VerfiyCodeSignUpData(this.crud);
   postdata(String email, String verifycode) async {
-    var response = await crud.postData(AppLink.signUp, {
+    var response = await crud.postData(AppLink.verifycodessignup, {
       "email": email,
       "verifycode": verifycode,
     });

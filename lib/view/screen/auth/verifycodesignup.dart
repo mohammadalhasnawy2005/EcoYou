@@ -43,13 +43,13 @@ class VerifyCodeSignUp extends StatelessWidget {
                             fieldWidth: 50.0,
                             borderRadius: BorderRadius.circular(20.5),
                             showFieldAsBox: true,
-                            numberOfFields: 4,
+                            numberOfFields: 5,
                             borderColor: AppColors.grey,
                             focusedBorderColor: AppColors.primary,
                             enabledBorderColor: AppColors.grey,
                             cursorColor: AppColors.primary,
                             onSubmit: (String verificationCode) {
-                              controller.goToSuccessSignUp();
+                              controller.goToSuccessSignUp(verificationCode);
                             },
                           ),
                           const SizedBox(height: 20.0),

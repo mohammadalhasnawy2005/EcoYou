@@ -3,9 +3,7 @@ import 'package:ecoyou/linkapi.dart';
 
 class SignupData {
   Crud crud;
-
   SignupData(this.crud);
-
   postdata(String username, String password, String email, String phone) async {
     var response = await crud.postData(AppLink.signUp, {
       "username": username,

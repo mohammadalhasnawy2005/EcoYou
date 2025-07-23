@@ -2,7 +2,7 @@ import 'package:ecoyou/core/class/statusrequest.dart';
 import 'package:ecoyou/core/constant/routes.dart';
 import 'package:ecoyou/core/function/handingdatacontroller.dart';
 import 'package:ecoyou/data/datasource/remote/auth/signup.dart';
-import 'package:flutter/widgets.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 
 abstract class SignUpController extends GetxController {
@@ -12,10 +12,11 @@ abstract class SignUpController extends GetxController {
 
 class SignUpControllerImp extends SignUpController {
   GlobalKey<FormState> formstate = GlobalKey<FormState>();
-  late TextEditingController email;
-  late TextEditingController password;
-  late TextEditingController phone;
+
   late TextEditingController username;
+  late TextEditingController email;
+  late TextEditingController phone;
+  late TextEditingController password;
 
   StatusRequest? statusRequest;
 
@@ -62,17 +63,17 @@ class SignUpControllerImp extends SignUpController {
 
   @override
   void onInit() {
-    email = TextEditingController();
     username = TextEditingController();
     phone = TextEditingController();
+    email = TextEditingController();
     password = TextEditingController();
     super.onInit();
   }
 
   @override
   void dispose() {
-    email.dispose();
     username.dispose();
+    email.dispose();
     phone.dispose();
     password.dispose();
     super.dispose();

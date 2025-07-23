@@ -22,7 +22,7 @@ List<GetPage<dynamic>> routes = [
   GetPage(
     name: "/",
     page: () => const OnBoarding(),
-    middlewares: [MyMiddleware()],
+    middlewares: [MyMiddleWare()],
   ),
   GetPage(
     name: AppRoute.successResetPassword,
