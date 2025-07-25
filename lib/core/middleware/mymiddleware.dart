@@ -10,10 +10,10 @@ class MyMiddleWare extends GetMiddleware {
   Myservices myServices = Get.find();
 
   @override
+  // ignore: body_might_complete_normally_nullable
   RouteSettings? redirect(String? route) {
     if (myServices.sharedPreferences.getString("onboarding") == "1") {
       return const RouteSettings(name: AppRoute.login);
     }
-    return null;
   }
 }
