@@ -1,6 +1,5 @@
 import 'package:ecoyou/core/constant/routes.dart';
 import 'package:ecoyou/core/middleware/mymiddleware.dart';
-import 'package:ecoyou/testview.dart';
 import 'package:ecoyou/view/screen/auth/forgetpassword/forgetpassword.dart';
 import 'package:ecoyou/view/screen/auth/login.dart';
 import 'package:ecoyou/view/screen/auth/forgetpassword/resetpassword.dart';
@@ -9,11 +8,13 @@ import 'package:ecoyou/view/screen/auth/forgetpassword/sucssesresetpassword.dart
 import 'package:ecoyou/view/screen/auth/sucssessignup.dart';
 import 'package:ecoyou/view/screen/auth/forgetpassword/verifycode.dart';
 import 'package:ecoyou/view/screen/auth/verifycodesignup.dart';
+import 'package:ecoyou/view/screen/home.dart';
 import 'package:ecoyou/view/screen/onboarding.dart';
 import 'package:get/get_navigation/get_navigation.dart';
 
 List<GetPage<dynamic>> routes = [
   // GetPage(name: "/", page: () => const TestView()),
+  GetPage(name: AppRoute.home, page: () => const Home()),
   GetPage(name: AppRoute.login, page: () => const Login()),
   GetPage(name: AppRoute.signup, page: () => const SignUp()),
   GetPage(name: AppRoute.forgetPassword, page: () => const ForgetPassword()),

@@ -50,6 +50,17 @@ class SignUp extends StatelessWidget {
                               ),
                               const SizedBox(height: 70),
                               CustomTextFormAuth(
+                                isNumber: false,
+                                valid: (val) {
+                                  return validInput(val!, 3, 20, "username");
+                                },
+                                hintText: "Enter your username",
+                                icon: Icons.person_outline,
+                                labelText: "Username",
+                                mycontroller: controller.username,
+                              ),
+                              const SizedBox(height: 20.0),
+                              CustomTextFormAuth(
                                 valid: (val) {
                                   return validInput(val!, 5, 100, "email");
                                 },
@@ -58,17 +69,6 @@ class SignUp extends StatelessWidget {
                                 labelText: "Email",
                                 mycontroller: controller.email,
                                 isNumber: false,
-                              ),
-                              const SizedBox(height: 20.0),
-                              CustomTextFormAuth(
-                                isNumber: false,
-                                valid: (val) {
-                                  return validInput(val!, 8, 30, "password");
-                                },
-                                hintText: "Enter your password",
-                                icon: Icons.lock_outline,
-                                labelText: "Password",
-                                mycontroller: controller.password,
                               ),
                               const SizedBox(height: 20.0),
                               CustomTextFormAuth(
@@ -85,12 +85,12 @@ class SignUp extends StatelessWidget {
                               CustomTextFormAuth(
                                 isNumber: false,
                                 valid: (val) {
-                                  return validInput(val!, 3, 20, "username");
+                                  return validInput(val!, 8, 30, "password");
                                 },
-                                hintText: "Enter your username",
-                                icon: Icons.person_outline,
-                                labelText: "Username",
-                                mycontroller: controller.username,
+                                hintText: "Enter your password",
+                                icon: Icons.lock_outline,
+                                labelText: "Password",
+                                mycontroller: controller.password,
                               ),
                               const SizedBox(height: 20.0),
                               Text(
