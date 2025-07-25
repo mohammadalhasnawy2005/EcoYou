@@ -7,10 +7,10 @@ class HandlingDataView extends StatelessWidget {
   final StatusRequest statusRequest;
   final Widget widget;
   const HandlingDataView({
-    Key? key,
+    super.key,
     required this.statusRequest,
     required this.widget,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -24,12 +24,7 @@ class HandlingDataView extends StatelessWidget {
         )
         : statusRequest == StatusRequest.serverfailure
         ? Center(
-          child: Lottie.asset(
-            ImageAsset.server,
-            width: 450,
-            height: 450,
-            repeat: true,
-          ),
+          child: Lottie.asset(ImageAsset.server, width: 250, height: 250),
         )
         : statusRequest == StatusRequest.failure
         ? Center(
