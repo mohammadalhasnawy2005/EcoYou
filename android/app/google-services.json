@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "79898521954",
+    "project_id": "ecoyou-d6408",
+    "storage_bucket": "ecoyou-d6408.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:79898521954:android:43d4381c78091be04afc3b",
+        "android_client_info": {
+          "package_name": "com.example.ecoyou"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDu5FSvdA2IF7nPsvIBzQEwqrzyYFyJe_w"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

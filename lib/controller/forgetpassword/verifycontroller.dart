@@ -1,18 +1,19 @@
 import 'package:ecoyou/core/class/statusrequest.dart';
 import 'package:ecoyou/core/constant/routes.dart';
 import 'package:ecoyou/core/function/handingdatacontroller.dart';
-import 'package:ecoyou/data/datasource/remote/auth/verifycodesignup.dart';
+import 'package:ecoyou/data/datasource/remote/forgetpassword/verifycode.dart';
 import 'package:get/get.dart';
 
-abstract class VerifyCodeSignUpController extends GetxController {
-  checkCode();
-  goToSuccessSignUp(String verfiyCodeSignUp);
+abstract class VerifyCodeController extends GetxController {
+  void checkCode();
+  void goToResetPassword(String verifycode);
 }
 
-class VerifyCodeSignUpControllerImp extends VerifyCodeSignUpController {
-  VerfiyCodeSignUpData verfiyCodeSignUpData = VerfiyCodeSignUpData(Get.find());
-
+class VerifyCodeControllerImp extends VerifyCodeController {
   String? email;
+
+  VerifyCodeForgetPasswordData verifyCodeForgetPasswordData =
+      VerifyCodeForgetPasswordData(Get.find());
 
   StatusRequest? statusRequest = StatusRequest.none;
 
@@ -20,17 +21,17 @@ class VerifyCodeSignUpControllerImp extends VerifyCodeSignUpController {
   checkCode() {}
 
   @override
-  goToSuccessSignUp(verfiyCodeSignUp) async {
+  goToResetPassword(verifycode) async {
     statusRequest = StatusRequest.loading;
     update();
-    var response = await verfiyCodeSignUpData.postdata(
+    var response = await verifyCodeForgetPasswordData.postdata(
       email!,
-      verfiyCodeSignUp,
+      verifycode,
     );
     statusRequest = handlingData(response);
     if (StatusRequest.success == statusRequest) {
       if (response['status'] == "success") {
-        Get.offNamed(AppRoute.successSignUp);
+        Get.offNamed(AppRoute.resetPassword, arguments: {"email": email});
       } else {
         Get.defaultDialog(
           title: "ُWarning",

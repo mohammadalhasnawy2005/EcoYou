@@ -1,4 +1,4 @@
-import 'package:ecoyou/controller/auth/verifycontroller.dart';
+import 'package:ecoyou/controller/forgetpassword/verifycontroller.dart';
 import 'package:ecoyou/core/constant/color.dart';
 import 'package:ecoyou/view/widget/auth/customtextbodyauth.dart';
 import 'package:ecoyou/view/widget/auth/customtexttitle.dart';
@@ -37,13 +37,13 @@ class VerifyCode extends StatelessWidget {
               fieldWidth: 50.0,
               borderRadius: BorderRadius.circular(20.5),
               showFieldAsBox: true,
-              numberOfFields: 4,
+              numberOfFields: 5,
               borderColor: AppColors.grey,
               focusedBorderColor: AppColors.primary,
               enabledBorderColor: AppColors.grey,
               cursorColor: AppColors.primary,
               onSubmit: (String verificationCode) {
-                controller.goToResetPassword();
+                controller.goToResetPassword(verificationCode);
               },
             ),
             const SizedBox(height: 20.0),

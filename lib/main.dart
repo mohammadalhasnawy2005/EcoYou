@@ -2,6 +2,7 @@ import 'package:ecoyou/bindings/intialbindings.dart';
 import 'package:ecoyou/core/localization/changelocal.dart';
 import 'package:ecoyou/core/services/services.dart';
 import 'package:ecoyou/routes.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
