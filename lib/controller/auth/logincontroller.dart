@@ -2,13 +2,14 @@ import 'package:ecoyou/core/class/statusrequest.dart';
 import 'package:ecoyou/core/constant/routes.dart';
 import 'package:ecoyou/core/function/handingdatacontroller.dart';
 import 'package:ecoyou/data/datasource/remote/auth/login.dart';
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 
 abstract class LoginController extends GetxController {
-  login();
-  goToSignUp();
-  goToForgetPassword();
+  void login();
+  void goToSignUp();
+  void goToForgetPassword();
 }
 
 class LoginControllerImp extends LoginController {
@@ -20,7 +21,7 @@ class LoginControllerImp extends LoginController {
   late TextEditingController password;
 
   bool isshowPassword = true;
-  StatusRequest? statusRequest;
+  StatusRequest? statusRequest = StatusRequest.none;
 
   void showPassword() {
     isshowPassword = isshowPassword == true ? false : true;
@@ -58,6 +59,11 @@ class LoginControllerImp extends LoginController {
 
   @override
   void onInit() {
+    FirebaseMessaging.instance.getToken().then((value) {
+      print("Firebase Token: $value");
+      String? token = value;
+    });
+
     email = TextEditingController();
     password = TextEditingController();
     super.onInit();

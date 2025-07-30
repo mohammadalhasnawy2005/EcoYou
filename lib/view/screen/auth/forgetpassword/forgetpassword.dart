@@ -1,4 +1,6 @@
-import 'package:ecoyou/controller/auth/forgetpasswordcontroller.dart';
+import 'package:ecoyou/controller/forgetpassword/forgetpasswordcontroller.dart';
+import 'package:ecoyou/core/class/handlingdataview.dart';
+import 'package:ecoyou/core/class/statusrequest.dart';
 import 'package:ecoyou/core/constant/color.dart';
 import 'package:ecoyou/core/function/validinput.dart';
 import 'package:ecoyou/view/widget/auth/custombuttonauth.dart';
@@ -13,9 +15,7 @@ class ForgetPassword extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    ForgetPasswordControllerImp controller = Get.put(
-      ForgetPasswordControllerImp(),
-    );
+    Get.put(ForgetPasswordControllerImp());
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
@@ -28,39 +28,45 @@ class ForgetPassword extends StatelessWidget {
           ).textTheme.headlineLarge!.copyWith(color: AppColors.grey),
         ),
       ),
-      body: Container(
-        padding: const EdgeInsets.all(20.0),
-        child: Form(
-          key: controller.formstate,
-          child: ListView(
-            children: [
-              const SizedBox(height: 20.0),
-              CustomTextTitleAuth(title: "check your email"),
-              const SizedBox(height: 10.0),
-              CustomTextBodyAuth(text: "Sign in to continue to EcoYou"),
-              const SizedBox(height: 70),
-              CustomTextFormAuth(
-                isNumber: false,
-                valid: (val) {
-                  return validInput(val!, 5, 100, "email");
-                },
-                hintText: "Enter your email",
-                icon: Icons.email_outlined,
-                labelText: "Email",
-                mycontroller: controller.email,
-              ),
-              const SizedBox(height: 20.0),
+      body: GetBuilder<ForgetPasswordControllerImp>(
+        builder:
+            (controller) => HandlingDataRequest(
+              statusRequest: controller.statusRequest!,
+              widget: Container(
+                padding: const EdgeInsets.all(20.0),
+                child: Form(
+                  key: controller.formstate,
+                  child: ListView(
+                    children: [
+                      const SizedBox(height: 20.0),
+                      CustomTextTitleAuth(title: "check your email"),
+                      const SizedBox(height: 10.0),
+                      CustomTextBodyAuth(text: "Sign in to continue to EcoYou"),
+                      const SizedBox(height: 70),
+                      CustomTextFormAuth(
+                        isNumber: false,
+                        valid: (val) {
+                          return validInput(val!, 5, 100, "email");
+                        },
+                        hintText: "Enter your email",
+                        icon: Icons.email_outlined,
+                        labelText: "Email",
+                        mycontroller: controller.email,
+                      ),
+                      const SizedBox(height: 20.0),
 
-              CustomButtonAuth(
-                text: "check email",
-                onPressed: () {
-                  controller.chekemail();
-                },
+                      CustomButtonAuth(
+                        text: "check email",
+                        onPressed: () {
+                          controller.checkemail();
+                        },
+                      ),
+                      const SizedBox(height: 20.0),
+                    ],
+                  ),
+                ),
               ),
-              const SizedBox(height: 20.0),
-            ],
-          ),
-        ),
+            ),
       ),
     );
   }

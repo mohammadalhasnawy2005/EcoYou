@@ -1,4 +1,5 @@
 import 'package:ecoyou/controller/auth/verifycodesignup.dart';
+import 'package:ecoyou/core/class/handlingdataview.dart';
 import 'package:ecoyou/core/class/statusrequest.dart';
 import 'package:ecoyou/core/constant/color.dart';
 import 'package:ecoyou/view/widget/auth/customtextbodyauth.dart';
@@ -27,35 +28,35 @@ class VerifyCodeSignUp extends StatelessWidget {
       ),
       body: GetBuilder<VerifyCodeSignUpControllerImp>(
         builder:
-            (controller) =>
-                controller.statusRequest == StatusRequest.loading
-                    ? const Center(child: Text("loading..........."))
-                    : Container(
-                      padding: const EdgeInsets.all(20.0),
-                      child: ListView(
-                        children: [
-                          const SizedBox(height: 20.0),
-                          CustomTextTitleAuth(title: "check your code"),
-                          const SizedBox(height: 10.0),
-                          CustomTextBodyAuth(text: "Verify your code"),
-                          const SizedBox(height: 70),
-                          OtpTextField(
-                            fieldWidth: 50.0,
-                            borderRadius: BorderRadius.circular(20.5),
-                            showFieldAsBox: true,
-                            numberOfFields: 5,
-                            borderColor: AppColors.grey,
-                            focusedBorderColor: AppColors.primary,
-                            enabledBorderColor: AppColors.grey,
-                            cursorColor: AppColors.primary,
-                            onSubmit: (String verificationCode) {
-                              controller.goToSuccessSignUp(verificationCode);
-                            },
-                          ),
-                          const SizedBox(height: 20.0),
-                        ],
-                      ),
+            (controller) => HandlingDataRequest(
+              statusRequest: controller.statusRequest!,
+              widget: Container(
+                padding: const EdgeInsets.all(20.0),
+                child: ListView(
+                  children: [
+                    const SizedBox(height: 20.0),
+                    CustomTextTitleAuth(title: "check your code"),
+                    const SizedBox(height: 10.0),
+                    CustomTextBodyAuth(text: "Verify your code"),
+                    const SizedBox(height: 70),
+                    OtpTextField(
+                      fieldWidth: 50.0,
+                      borderRadius: BorderRadius.circular(20.5),
+                      showFieldAsBox: true,
+                      numberOfFields: 5,
+                      borderColor: AppColors.grey,
+                      focusedBorderColor: AppColors.primary,
+                      enabledBorderColor: AppColors.grey,
+                      cursorColor: AppColors.primary,
+                      onSubmit: (String verificationCode) {
+                        controller.goToSuccessSignUp(verificationCode);
+                      },
                     ),
+                    const SizedBox(height: 20.0),
+                  ],
+                ),
+              ),
+            ),
       ),
     );
   }
